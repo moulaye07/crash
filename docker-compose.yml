@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+
+  api:
+    image: api
+    build:
+      context: ./api
+    command: bash -c "tail -F anything"
+    ports:
+      - 8001:8001
+    volumes:
+      - ./data/config:/api/config
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongodbdata:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+  
+  mosquitto:
+    image: moulaye07/mosquitto
+    command: bash -c "service mosquitto start;tail -F anything"
+    ports:
+      - 1883:1883
+   
+  police:
+    image: police
+    build:
+      context: ./police
+    command: bash -c "tail -F anything"
+    depends_on:
+      - api
+      - mosquitto
+   
+  hopital:
+    image: hopital
+    build:
+      context: ./hopital
+    command: bash -c "tail -F anything"
+    depends_on:
+      - api
+      - mosquitto
+  
+  listener:
+    image: listener
+    build:
+      context: ./listener
+    command: bash -c "tail -F anything"
+    depends_on:
+      - api
+      - mosquitto
+  
