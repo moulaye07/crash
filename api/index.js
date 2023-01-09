@@ -13,7 +13,7 @@ const app = express();
 
 
 //connection bdd
-mongoose.connect(process.env.MONGODB_URL, (err) => {
+mongoose.connect("mongodb://nongo:27017/CRASH", (err) => {
     if (!err) console.log("connected to mongo");
     else console.log("not connected to mongo");
 })
@@ -31,6 +31,6 @@ app.use('/api/car', carRoutes);
 
 
 //server
-app.listen(process.env.PORT, () => {
-    console.log(`Listening on port ${process.env.PORT}`);
+app.listen("8001", () => {
+    console.log(`Listening on port 8001`);
 })

@@ -1,18 +1,22 @@
-version: '3.7'
+version: '3.1'
 
 services:
 
   api:
-    image: api
-    build:
-      context: ./api
+    image: moulaye07/api
     command: bash -c "tail -F anything"
     ports:
       - 8001:8001
-    volumes:
-      - ./data/config:/api/config
     depends_on:
       - mongo
+
+  front:
+    image: moulaye07/client
+    command: bash -c "tail -F anything"
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
 
   mongo:
     image: mongo
@@ -20,7 +24,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./data/mongodbdata:/data/db
+      - ./data:/data/db
 
   mongo-express:
     image: mongo-express
@@ -37,7 +41,7 @@ services:
       - 1883:1883
    
   police:
-    image: police
+    image: moulaye07/police
     build:
       context: ./police
     command: bash -c "tail -F anything"
@@ -46,7 +50,7 @@ services:
       - mosquitto
    
   hopital:
-    image: hopital
+    image: moulaye07/hopital
     build:
       context: ./hopital
     command: bash -c "tail -F anything"
@@ -55,7 +59,7 @@ services:
       - mosquitto
   
   listener:
-    image: listener
+    image: moulaye07/listener
     build:
       context: ./listener
     command: bash -c "tail -F anything"
