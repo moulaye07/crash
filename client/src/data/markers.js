@@ -1,0 +1,20 @@
+const stationMarkers = [
+  { latitude: 33.956403729467034, longitude: -6.873064227572706 },
+  { latitude: 33.95961040197419, longitude: -6.865425293075238 },
+  { latitude: 33.955487698966934, longitude: -6.898913464961753 },
+  { latitude: 33.9802919759127, longitude: -6.840316809883433 },
+  { latitude: 33.98623397431218, longitude: -6.863905405047626 },
+  { latitude: 33.9998010108349, longitude: -6.862912482108613 },
+  { latitude: 33.993096556260646, longitude: -6.848831301751317 },
+  { latitude: 33.99111136068769, longitude: -6.841980783396007 },
+  { latitude: 33.99248997364531, longitude: -6.869648896365026 },
+  { latitude: 34.004491340822256, longitude: -6.8485688462840235 },
+  { latitude: 33.98863568412379, longitude: -6.875646255480051 },
+  { latitude: 33.99216814110215, longitude: -6.832379206048584 },
+  { latitude: 34.00103788556433, longitude: -6.840142659034857 },
+  { latitude: 34.00846752191723, longitude: -6.8333889663470675 },
+  { latitude: 34.0076854855493, longitude: -6.822674683334789 },
+  { latitude: 34.002000163044286, longitude: -6.835341840296296 },
+];
+
+export default stationMarkers;
